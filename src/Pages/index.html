@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Gate Solutions - Organize Chaos. Unlock Clarity.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #F8FAFC;
+            color: #0F172A;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-box {
+            width: 32px;
+            height: 32px;
+            background: #4F46E5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(to right, #0F172A, #475569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav a {
+            color: #64748B;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: #4F46E5;
+        }
+
+        .btn-primary {
+            background: #0F172A;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #1E293B;
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.3);
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #64748B;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px;
+            color: #64748B;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            color: #4F46E5;
+        }
+
+        /* Page container */
+        .page {
+            display: none;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 160px 24px 120px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.3), rgba(139, 92, 246, 0.3));
+            filter: blur(100px);
+            animation: float1 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(59, 130, 246, 0.3));
+            filter: blur(100px);
+            animation: float2 15s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.2); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 30px) scale(1.15); }
+        }
+
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #E2E8F0;
+            backdrop-filter: blur(4px);
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748B;
+            margin-bottom: 32px;
+        }
+
+        .sparkle-icon {
+            width: 16px;
+            height: 16px;
+            color: #4F46E5;
+        }
+
+        .hero h1 {
+            font-size: 96px;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #0F172A;
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #4F46E5, #7C3AED, #4F46E5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: gradient 3s linear infinite;
+        }
+
+        @keyframes gradient {
+            to { background-position: 200% center; }
+        }
+
+        .hero p {
+            font-size: 24px;
+            color: #64748B;
+            margin-bottom: 48px;
+            max-width: 768px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-dark {
+            background: #0F172A;
+            color: white;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+        }
+
+        .btn-dark:hover {
+            background: #1E293B;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+        }
+
+        .btn-light {
+            background: rgba(255, 255, 255, 0.5);
+            color: #475569;
+            border: 1px solid #CBD5E1;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-light:hover {
+            background: white;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Products Grid */
+        .products-section {
+            padding: 80px 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            grid-auto-rows: 400px;
+        }
+
+        .product-card {
+            position: relative;
+            border-radius: 40px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .scanabin-card {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: white;
+        }
+
+        .card-bg-image {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            mix-blend-mode: overlay;
+            opacity: 0.2;
+            transition: transform 0.7s ease;
+        }
+
+        .product-card:hover .card-bg-image {
+            transform: scale(1.05);
+        }
+
+        .scanabin-card .card-bg-image {
+            background-image: url('https://images.unsplash.com/photo-1555529733-1690059280be?q=80&w=2787&auto=format&fit=crop');
+        }
+
+        .card-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent, transparent);
+        }
+
+        .card-content {
+            position: relative;
+            height: 100%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 2;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .card-icon {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-badge {
+            padding: 6px 16px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-footer h3 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .card-footer p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .card-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 32px;
+            background: white;
+            color: #4F46E5;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .card-button:hover {
+            background: #F1F5F9;
+        }
+
+        .dockpilot-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            color: #0F172A;
+        }
+
+        .dockpilot-card .card-bg-image {
+            background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2940&auto=format&fit=crop');
+            opacity: 0;
+        }
+
+        .dockpilot-card:hover .card-bg-image {
+            opacity: 0.1;
+        }
+
+        .dockpilot-card .card-icon {
+            background: #D1FAE5;
+            border-color: #A7F3D0;
+        }
+
+        .dockpilot-card .card-footer h3 {
+            font-size: 30px;
+        }
+
+        .dockpilot-card .card-footer p {
+            color: #64748B;
+            font-size: 16px;
+        }
+
+        .dockpilot-card .card-button {
+            background: transparent;
+            color: #475569;
+            border: 1px solid #E2E8F0;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .dockpilot-card .card-button:hover {
+            color: #10B981;
+            border-color: #A7F3D0;
+            background: #D1FAE5;
+        }
+
+        .stats-card {
+            background: #0F172A;
+            color: white;
+            position: relative;
+        }
+
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 256px;
+            height: 256px;
+            background: #1E293B;
+            border-radius: 50%;
+            filter: blur(80px);
+            transform: translate(50%, -50%);
+        }
+
+        .stats-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 32px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: #94A3B8;
+        }
+
+        .ecosystem-card {
+            grid-column: span 2;
+            background: #F1F5F9;
+            border: 1px solid #E2E8F0;
+            transition: all 0.5s ease;
+        }
+
+        .ecosystem-card:hover {
+            background: white;
+            border-color: #C7D2FE;
+        }
+
+        .ecosystem-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+        }
+
+        .ecosystem-text {
+            flex: 1;
+        }
+
+        .ecosystem-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #4F46E5;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .ecosystem-text h3 {
+            font-size: 30px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .ecosystem-text p {
+            color: #64748B;
+            font-size: 18px;
+            max-width: 450px;
+        }
+
+        .ecosystem-arrow {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: white;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .ecosystem-card:hover .ecosystem-arrow {
+            transform: scale(1.1) rotate(12deg);
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 96px 24px;
+            background: white;
+            border-top: 1px solid #F1F5F9;
+        }
+
+        .values-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+        }
+
+        .value-item {
+            text-align: left;
+        }
+
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            background: #F8FAFC;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0F172A;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover .value-icon {
+            background: #EEF2FF;
+            color: #4F46E5;
+        }
+
+        .value-item h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 12px;
+        }
+
+        .value-item p {
+            color: #64748B;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 96px 24px;
+            background: #0F172A;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 600px;
+            background: rgba(79, 70, 229, 0.2);
+            border-radius: 50%;
+            filter: blur(120px);
+            mix-blend-mode: screen;
+        }
+
+        .cta-content {
+            max-width: 1024px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-size: 56px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 32px;
+        }
+
+        .cta-content p {
+            font-size: 20px;
+            color: #94A3B8;
+            margin-bottom: 40px;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            padding: 16px 40px;
+            background: white;
+            color: #0F172A;
+            border-radius: 9999px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            background: #F1F5F9;
+        }
+
+        /* Footer */
+        footer {
+            background: #0F172A;
+            color: #CBD5E1;
+            padding: 64px 24px;
+            border-top: 1px solid #1E293B;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 64px;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo-box {
+            width: 32px;
+            height: 32px;
+            background: #4F46E5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .footer-brand p {
+            color: #94A3B8;
+            margin-bottom: 32px;
+            max-width: 420px;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            color: #94A3B8;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: white;
+        }
+
+        .footer-column h3 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: #CBD5E1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: #6366F1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1E293B;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #64748B;
+            font-size: 14px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-legal span {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal span:hover {
+            color: #CBD5E1;
+        }
+
+        /* Product Page Specific Styles */
+        .product-hero {
+            position: relative;
+            padding: 120px 24px 100px;
+            background: #0F172A;
+            overflow: hidden;
+        }
+
+        .product-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            mix-blend-mode: overlay;
+        }
+
+        .scanabin-hero::before {
+            background-image: url('https://images.unsplash.com/photo-1616401784845-180882ba9ba8?q=80&w=2940&auto=format&fit=crop');
+        }
+
+        .dockpilot-hero::before {
+            background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2940&auto=format&fit=crop');
+        }
+
+        .product-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(15, 23, 42, 0.9));
+        }
+
+        .product-hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            color: white;
+        }
+
+        .product-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 24px;
+            backdrop-filter: blur(4px);
+        }
+
+        .indigo-badge {
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            color: #A5B4FC;
+        }
+
+        .emerald-badge {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #6EE7B7;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .product-hero h1 {
+            font-size: 60px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .product-hero p {
+            font-size: 18px;
+            color: #CBD5E1;
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .product-hero-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 96px 24px;
+            background: #F8FAFC;
+        }
+
+        .features-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #64748B;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 32px;
+            border-radius: 24px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #C7D2FE;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: #EEF2FF;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4F46E5;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: #64748B;
+            line-height: 1.7;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            padding: 120px 24px;
+            background: #F8FAFC;
+        }
+
+        .contact-container {
+            max-width: 768px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid #E2E8F0;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #0F172A;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            color: #0F172A;
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4F46E5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        /* About Page */
+        .about-hero {
+            padding: 160px 24px 80px;
+            background: #F8FAFC;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 32px;
+        }
+
+        .about-hero p {
+            font-size: 20px;
+            color: #64748B;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .about-content {
+            padding: 96px 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 24px;
+        }
+
+        .about-text p {
+            color: #64748B;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .mission-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .mission-card {
+            padding: 32px;
+            background: #F8FAFC;
+            border-radius: 20px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .mission-card-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 16px;
+        }
+
+        .mission-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 8px;
+        }
+
+        .mission-card p {
+            color: #64748B;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 64px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 350px;
+            }
+
+            .scanabin-card,
+            .ecosystem-card {
+                grid-column: span 1;
+            }
+
+            .values-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-hero-content,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .product-hero h1 {
+                font-size: 40px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .ecosystem-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-card {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="header-content">
+                <a href="Home.html" class="logo">
+                    <div class="logo-box">A</div>
+                    <span class="logo-text">Angel Gate</span>
+                </a>
+                <nav id="desktopNav">
+                    <a href="ScanABin.html">Scan-A-Bin</a>
+                    <a href="DockPilot.html">DockPilot</a>
+                    <a href="About.html">About</a>
+                    <a href="Support.html">Support</a>
+                    <a href="Support.html" class="btn-primary">Get in Touch</a>
+                </nav>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="Home.html" onclick="toggleMobileMenu()">Home</a>
+            <a href="ScanABin.html" onclick="toggleMobileMenu()">Scan-A-Bin</a>
+            <a href="DockPilot.html" onclick="toggleMobileMenu()">DockPilot</a>
+            <a href="About.html" onclick="toggleMobileMenu()">About</a>
+            <a href="Support.html" onclick="toggleMobileMenu()">Support</a>
+        </div>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="homePage" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <svg class="sparkle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                    </svg>
+                    <span>Reimagining Operational Software</span>
+                </div>
+                <h1>
+                    Organize Chaos.<br>
+                    <span class="gradient-text">Unlock Clarity.</span>
+                </h1>
+                <p>Angel Gate Solutions builds intelligent tools for real-world problems. From smart home inventory to complex warehouse logistics.</p>
+                <div class="hero-buttons">
+                    <a href="ScanABin.html" class="btn-large btn-dark">Discover Scan-A-Bin</a>
+                    <a href="DockPilot.html" class="btn-large btn-light">Explore DockPilot</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="products-grid">
+                <!-- Scan-A-Bin Card -->
+                <a href="ScanABin.html" class="product-card scanabin-card" style="text-decoration: none; color: inherit;">
+                    <div class="card-bg-image"></div>
+                    <div class="card-gradient"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <svg style="width: 28px; height: 28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                </svg>
+                            </div>
+                            <div class="card-badge">For Home & Business</div>
+                        </div>
+                        <div class="card-footer">
+                            <h3>Scan-A-Bin</h3>
+                            <p>AI-powered inventory management. Snap a photo, generate QR codes, and find anything instantly.</p>
+                            <span class="card-button">
+                                View Product
+                                <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10v10M7 17L17 7"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- DockPilot Card -->
+                <a href="DockPilot.html" class="product-card dockpilot-card" style="text-decoration: none; color: inherit;">
+                    <div class="card-bg-image"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <svg style="width: 28px; height: 28px; color: #10B981;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <h3>DockPilot</h3>
+                            <p>Enterprise workforce management. Scheduling, attendance, and operations in one place.</p>
+                            <span class="card-button">
+                                Learn More
+                                <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Stats Card -->
+                <div class="product-card stats-card">
+                    <div class="card-content stats-content">
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Cloud Native</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Reliability</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ecosystem Card -->
+                <a href="About.html" class="product-card ecosystem-card" style="text-decoration: none; color: inherit;">
+                    <div class="card-content ecosystem-content">
+                        <div class="ecosystem-text">
+                            <div class="ecosystem-badge">
+                                <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>The Ecosystem</span>
+                            </div>
+                            <h3>One Brand.<br>Infinite Possibilities.</h3>
+                            <p>Angel Gate Solutions connects these projects, establishing a consistent quality standard and support system.</p>
+                        </div>
+                        <div class="ecosystem-arrow">
+                            <svg style="width: 32px; height: 32px; color: #0F172A;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="values-container">
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <svg style="width: 28px; height: 28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <h3>Simplicity First</h3>
+                        <p>We believe powerful software doesn't have to be complicated. Our interfaces are designed for clarity.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <svg style="width: 28px; height: 28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <h3>Enterprise Grade</h3>
+                        <p>Security and scalability are baked in from day one, whether for your home or your warehouse.</p>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <svg style="width: 28px; height: 28px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                            </svg>
+                        </div>
+                        <h3>Always Evolving</h3>
+                        <p>We continuously update our tools with new features, AI capabilities, and user-requested improvements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to get organized?</h2>
+                <p>Join thousands of users who trust Angel Gate Solutions to manage their inventory and operations.</p>
+                <a href="Support.html" class="cta-button">Get in Touch</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- SCAN-A-BIN PAGE -->
+    <div id="scanabinPage" class="page">
+        <section class="product-hero scanabin-hero">
+            <div class="product-hero-content">
+                <div>
+                    <div class="product-hero-badge indigo-badge">
+                        <div class="pulse-dot" style="background: #818CF8;"></div>
+                        <span>Smart Inventory Management</span>
+                    </div>
+                    <h1>Organize Your World.<br><span style="color: #A5B4FC;">Find Anything in Seconds.</span></h1>
+                    <p>A smart inventory app for homes and small businesses. Use AI to identify items, generate QR codes for bins, and never lose track of your stuff again.</p>
+                    <div class="hero-buttons">
+                        <a href="Support.html" class="btn-large" style="background: #4F46E5; color: white;">Get Started Free</a>
+                        <a href="Support.html" class="btn-large btn-light" style="border-color: #64748B; color: white;">Watch Demo</a>
+                    </div>
+                </div>
+                <div class="product-hero-image">
+                    <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?q=80&w=2574&auto=format&fit=crop" alt="Scan-A-Bin Interface">
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="features-container">
+                <div class="section-header">
+                    <h2>Why Scan-A-Bin?</h2>
+                    <p>Stop guessing which box has your holiday decorations.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7V5a2 2 0 012-2h2M17 3h2a2 2 0 012 2v2M21 17v2a2 2 0 01-2 2h-2M7 21H5a2 2 0 01-2-2v-2"/>
+                            </svg>
+                        </div>
+                        <h3>Smart Scanning</h3>
+                        <p>Take a photo of a bin and let AI help identify items. Reduces manual typing and speeds up organization.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                        <h3>Powerful Search</h3>
+                        <p>Type 'batteries' or 'PS5 controller' and instantly see which bin, room, or shelf it's in.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </div>
+                        <h3>Multi-User Households</h3>
+                        <p>Invite family or roommates to your household so everyone can find and add items.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <h3>Visual Organization</h3>
+                        <p>Each bin has photos and categories, making your storage feel like a visual catalog.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <h3>QR Code Labels</h3>
+                        <p>Generate and print QR codes for your bins. Scan a physical bin to see its contents instantly.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3>Tiers & Usage</h3>
+                        <p>Start with a free tier or upgrade for higher AI limits and an ad-free experience.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Start organizing today</h2>
+                <p>Join homeowners, renters, and small businesses who've transformed their storage chaos.</p>
+                <a href="Support.html" class="cta-button">Contact Sales</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- DOCKPILOT PAGE -->
+    <div id="dockpilotPage" class="page">
+        <section class="product-hero dockpilot-hero">
+            <div class="product-hero-content">
+                <div>
+                    <div class="product-hero-badge emerald-badge">
+                        <div class="pulse-dot" style="background: #34D399;"></div>
+                        <span>Enterprise Operations Platform</span>
+                    </div>
+                    <h1>Modern Workforce &<br><span style="color: #6EE7B7;">Operations Management</span></h1>
+                    <p>Built for warehouses and logistics. Centralize scheduling, attendance, forms, and staffing visibility in one powerful platform.</p>
+                    <div class="hero-buttons">
+                        <a href="Support.html" class="btn-large" style="background: #10B981; color: white;">Request Demo</a>
+                        <a href="Support.html" class="btn-large btn-light" style="border-color: #64748B; color: white;">View Features</a>
+                    </div>
+                </div>
+                <div class="product-hero-image">
+                    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2940&auto=format&fit=crop" alt="DockPilot Dashboard">
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section" style="background: white;">
+            <div class="features-container">
+                <div class="section-header">
+                    <h2>Streamline Your Facility</h2>
+                    <p>Replace spreadsheets and paper notes with structured digital records.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: #D1FAE5; color: #10B981;">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <h3>Intelligent Scheduling</h3>
+                        <p>Create daily and weekly shift schedules by department. Mirrors printed warehouse schedules but digital and searchable.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: #D1FAE5; color: #10B981;">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </div>
+                        <h3>Attendance Tracking</h3>
+                        <p>Real-time logging for leads (present, late, absent). Supervisors can log SPTO and incidents with a traceable record.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: #D1FAE5; color: #10B981;">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </div>
+                        <h3>Discrepancy Highlighting</h3>
+                        <p>Flags mismatches between lead entries and supervisor notes to improve accountability.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: #D1FAE5; color: #10B981;">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h3>Dynamic Forms</h3>
+                        <p>Create custom forms for incident reports, safety checks, and overtime offers. Assign to specific shifts or groups.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: #D1FAE5; color: #10B981;">
+                            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
