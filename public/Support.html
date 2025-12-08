@@ -5,6 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Support - Angel Gate Solutions</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBcYD5-33TxcsSczhf7AusWxmGsCkxzxhk",
+      authDomain: "scan-a-bin.firebaseapp.com",
+      databaseURL: "https://scan-a-bin-default-rtdb.firebaseio.com",
+      projectId: "scan-a-bin",
+      storageBucket: "scan-a-bin.firebasestorage.app",
+      messagingSenderId: "608586616258",
+      appId: "1:608586616258:web:330ab8085ea96222fc9a5b"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    window.submitToFirebase = async function(name, email, type, subject, message) {
+      try {
+        await push(ref(database, 'support_inquiries'), {
+          name: name,
+          email: email,
+          type: type,
+          subject: subject,
+          message: message,
+          timestamp: new Date().toISOString()
+        });
+        return true;
+      } catch (error) {
+        console.error('Error saving to Firebase:', error);
+        return false;
+      }
+    };
+  </script>
   <style>
     @keyframes fadeInUp {
       from {
@@ -252,11 +287,15 @@
       const subject = document.getElementById('subject').value;
       const message = document.getElementById('message').value;
 
-      // Show success message
-      alert(`Thank you for contacting us, ${name}!\n\nWe've received your message and will respond to ${email} within 24 hours.\n\nInquiry Type: ${type}\nSubject: ${subject}`);
-
-      // Reset form
-      event.target.reset();
+      // Save to Firebase
+      window.submitToFirebase(name, email, type, subject, message).then(success => {
+        if (success) {
+          alert(`Thank you for contacting us, ${name}!\n\nWe've received your message and will respond to ${email} within 24 hours.\n\nInquiry Type: ${type}\nSubject: ${subject}`);
+          event.target.reset();
+        } else {
+          alert('Error submitting form. Please try again.');
+        }
+      });
     }
 
     // Smooth scrolling for anchor links
