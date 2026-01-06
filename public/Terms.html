@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms &amp; Conditions - Scan-A-Bin | Angel Gate Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up { animation: fadeInUp 0.7s ease-out both; }
+    .prose a { text-decoration: underline; text-underline-offset: 3px; }
+    .toc a.active { color: rgb(79 70 229); }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-900">
+  <!-- Navigation (matches your site) -->
+  <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <a class="flex items-center space-x-2 group" href="/">
+          <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-indigo-500/30 group-hover:scale-105 transition-transform duration-300">A</div>
+          <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">Angel Gate</span>
+        </a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a class="text-sm font-medium transition-colors duration-200 text-slate-600 hover:text-indigo-600" href="/ScanABin">Scan-A-Bin</a>
+          <a class="text-sm font-medium transition-colors duration-200 text-slate-600 hover:text-indigo-600" href="/DockPilot">DockPilot</a>
+          <a class="text-sm font-medium transition-colors duration-200 text-slate-600 hover:text-indigo-600" href="/About">About</a>
+          <a class="text-sm font-medium transition-colors duration-200 text-slate-600 hover:text-indigo-600" href="/Support">Support</a>
+          <a href="/Support" class="bg-slate-900 hover:bg-slate-800 text-white shadow-lg shadow-slate-900/20 rounded-full px-6 py-2 text-sm font-medium transition-colors">Get in Touch</a>
+        </div>
+        <button class="md:hidden text-slate-600 hover:text-slate-900 p-2" onclick="toggleMobileMenu()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200/60 bg-white/90 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-3">
+        <a class="text-sm font-medium text-slate-700 hover:text-indigo-600" href="/ScanABin">Scan-A-Bin</a>
+        <a class="text-sm font-medium text-slate-700 hover:text-indigo-600" href="/DockPilot">DockPilot</a>
+        <a class="text-sm font-medium text-slate-700 hover:text-indigo-600" href="/About">About</a>
+        <a class="text-sm font-medium text-slate-700 hover:text-indigo-600" href="/Support">Support</a>
+        <a class="mt-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl px-4 py-3 text-sm font-medium transition-colors text-center" href="/Support">Get in Touch</a>
+      </div>
+    </div>
+  </nav>
+  <main class="pt-24">
+    <!-- Header -->
+    <section class="relative bg-white border-b border-slate-200/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="fade-in-up">
+          <div class="inline-flex items-center rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-700">
+            Scan-A-Bin
+          </div>
+          <h1 class="mt-4 text-3xl md:text-5xl font-bold text-slate-900 tracking-tight">
+            Terms &amp; Conditions
+          </h1>
+          <p class="mt-4 text-slate-600 text-base md:text-lg max-w-3xl leading-relaxed">
+            These Terms &amp; Conditions explain how Scan-A-Bin (by Angel Gate Solutions) governs your use of the Scan-A-Bin app and related services.
+          </p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3 sm:items-center">
+            <div class="text-sm text-slate-500">
+              Effective date: <span id="effectiveDate" class="font-medium text-slate-700">December 15, 2025</span>
+            </div>
+            <span class="hidden sm:inline-block text-slate-300">•</span>
+            <div class="text-sm text-slate-500">
+              Last updated: <span id="lastUpdated" class="font-medium text-slate-700">December 15, 2025</span>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="mailto:support@angelgatesolutions.com" class="inline-flex items-center gap-2 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 text-sm font-medium shadow transition-colors">
+              Contact Support
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m13 5 7 7-7 7"></path>
+              </svg>
+            </a>
+            <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 hover:bg-slate-50 text-slate-800 px-5 py-2 text-sm font-medium transition-colors">
+              Print
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9V2h12v7"></path>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <path d="M6 14h12v8H6z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+          <section class="py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="grid lg:grid-cols-12 gap-10">
+                <aside class="lg:col-span-4">
+                  <div class="sticky top-28">
+                    <div class="bg-white rounded-2xl border border-slate-200/70 shadow-sm p-6">
+                      <div class="flex items-center justify-between">
+                        <h2 class="text-sm font-semibold text-slate-900">On this page</h2>
+                        <button class="text-xs text-slate-500 hover:text-slate-800" onclick="expandAll()">Expand</button>
+                      </div>
+                      <nav class="toc mt-4 flex flex-col gap-2 text-sm">
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#acceptance">1. Acceptance of these Terms</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#eligibility">2. Eligibility</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#account">3. Account Registration & Security</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#household">4. Household Membership & Shared Access</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#acceptable-use">5. Acceptable Use & Prohibited Activities</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#data">6. Data, Backups, & Storage</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#privacy">7. Privacy & Security</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#third-party">8. Third-Party Services & Links</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#ip">9. Intellectual Property & License</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#user-content">10. User Content & Responsibility</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#advice">11. No Professional Advice</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#warranties">12. Disclaimers of Warranties</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#liability">13. Limitation of Liability</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#indemnification">14. Indemnification</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#termination">15. Termination & Suspension</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#changes">16. Changes to the App & Terms</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#law">17. Governing Law</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#severability">18. Severability & Entire Agreement</a>
+                        <a class="text-slate-600 hover:text-indigo-600 transition-colors" href="#contact">19. Contact Information</a>
+                      </nav>
+                      <div class="mt-6 rounded-xl bg-slate-50 border border-slate-200/60 p-4">
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                          These Terms & Conditions are provided for your review. For legal compliance, consult your legal advisor and ensure these terms match your app's actual practices.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </aside>
+                <article class="lg:col-span-8">
+                  <div class="bg-white rounded-2xl border border-slate-200/70 shadow-sm p-8 md:p-10 prose max-w-none">
+                    <section id="acceptance" class="scroll-mt-28">
+                      <h2 class="text-2xl font-bold text-slate-900">1. Acceptance of these Terms</h2>
+                      <p>By accessing or using Scan-a-Bin (the "App"), you agree to be bound by these Terms and Conditions (the "Terms"). If you do not agree to these Terms, you must not use the App.<br><br>These Terms form a binding agreement between you and Scan-a-Bin (referred to as "we", "us", or "our"). Your continued use of the App following any updates to these Terms constitutes acceptance of those changes.</p>
+                    </section>
+                    <section id="eligibility" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">2. Eligibility</h2>
+                      <p>You may use Scan-a-Bin only if you: (a) are at least 13 years old (or the minimum age of digital consent in your jurisdiction), and (b) have the legal capacity to enter into a binding agreement.<br><br>If you use the App on behalf of another person, household, or entity, you represent that you are authorized to accept these Terms on their behalf and that they agree to be bound by these Terms.</p>
+                    </section>
+                    <section id="account" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">3. Account Registration &amp; Security</h2>
+                      <p>To use certain features of Scan-a-Bin, you may be required to create an account and provide certain information, such as your name, email address, and other registration details. You agree to provide accurate, current, and complete information and to keep it updated.<br><br>You are responsible for maintaining the confidentiality of your account credentials (including any passwords, passcodes, or authentication methods) and for all activities that occur under your account. You agree to immediately notify us of any suspected unauthorized use of your account or any other breach of security.<br><br>We are not liable for any loss or damage arising from your failure to protect your account credentials or from any unauthorized use of your account that occurs before you notify us.</p>
+                    </section>
+                    <section id="household" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">4. Household Membership &amp; Shared Access</h2>
+                      <p>Scan-a-Bin may allow you to create or join a household, share bins and items, and grant other users access to your household data. By inviting others to your household or accepting an invitation, you acknowledge that:<br><br>&bull; Certain information about your bins, items, and activity within the household may be visible to other members.<br>&bull; Household owners or admins may manage invitations, permissions, and access to shared data.<br>&bull; If you leave a household, you may lose access to its bins, items, and related history.<br><br>You are responsible for ensuring that any person you invite has your permission to view and interact with the shared data.</p>
+                    </section>
+                    <section id="acceptable-use" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">5. Acceptable Use &amp; Prohibited Activities</h2>
+                      <p>You agree to use Scan-a-Bin only for lawful purposes and in accordance with these Terms. You will not, and will not attempt to:<br><br>&bull; Use the App in any manner that violates applicable law, regulation, or the rights of others.<br>&bull; Upload, store, or share content that is illegal, fraudulent, defamatory, harassing, threatening, hateful, or otherwise harmful.<br>&bull; Store or share highly sensitive information that the App is not intended to handle (such as Social Security numbers, payment card data, medical records, or other regulated data).<br>&bull; Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code or underlying ideas of the App.<br>&bull; Interfere with or disrupt the integrity or performance of the App, including by introducing malware, scraping, or overloading our infrastructure.<br>&bull; Use automated tools or scripts to access the App in a manner that exceeds the scope of normal personal use.<br><br>We may suspend or terminate your access to the App immediately and without notice if we reasonably believe you are violating these Acceptable Use obligations.</p>
+                    </section>
+                    <section id="data" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">6. Data, Backups, &amp; Storage</h2>
+                      <p>Scan-a-Bin is designed to help you organize and track your household items, bins, and locations. While we take reasonable measures to protect and preserve data, we do not guarantee that your data will always be available or that it will never be lost, corrupted, or deleted.<br><br>&bull; You are responsible for maintaining your own backups of any important information stored in the App.<br>&bull; We may, from time to time, perform maintenance or updates that affect access to your data.<br>&bull; We reserve the right to delete or anonymize data after a period of inactivity or as required by law.<br><br>We are not liable for any loss of data or for any consequences that may result from such loss, to the fullest extent permitted by law.</p>
+                    </section>
+                    <section id="privacy" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">7. Privacy &amp; Security</h2>
+                      <p>We care about the privacy and security of your information. Scan-a-Bin uses third-party services (such as authentication and database providers) to store and process certain data.<br><br>&bull; We use reasonable technical and organizational measures to protect information against unauthorized access, disclosure, alteration, or destruction.<br>&bull; No method of transmission over the internet or method of electronic storage is completely secure. We cannot guarantee absolute security of your data.<br>&bull; By using the App, you consent to the collection, use, and storage of information as described in our privacy practices, which may be updated from time to time.<br><br>Do not store highly sensitive, regulated, or confidential data in Scan-a-Bin. The App is intended for household organization purposes only.</p>
+                    </section>
+                    <section id="third-party" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">8. Third-Party Services &amp; Links</h2>
+                      <p>The App may rely on or integrate with third-party services (such as authentication providers, analytics, or cloud storage) and may contain links to third-party websites or resources.<br><br>We do not control and are not responsible for the content, policies, or practices of any third-party services, websites, or resources. Your use of third-party services is governed by their own terms and privacy policies.<br><br>We are not liable for any loss or damage related to your use of any third-party services or resources.</p>
+                    </section>
+                    <section id="ip" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">9. Intellectual Property &amp; License</h2>
+                      <p>The App, including all software, design, text, graphics, logos, and other content (excluding the data you add as a user), is owned by or licensed to Scan-a-Bin and is protected by copyright, trademark, and other intellectual property laws.<br><br>Subject to your compliance with these Terms, we grant you a limited, personal, non-exclusive, non-transferable, and revocable license to install and use the App for your own household or personal organizational use.<br><br>You may not copy, modify, distribute, sell, lease, or create derivative works based on the App, in whole or in part, except as expressly permitted by us in writing.</p>
+                    </section>
+                    <section id="user-content" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">10. User Content &amp; Responsibility</h2>
+                      <p>You retain ownership of the content you add to Scan-a-Bin, such as bin names, item descriptions, photos, and notes ("User Content"). By submitting User Content, you grant us a non-exclusive, worldwide, royalty-free license to store, process, and display such content as needed to operate and improve the App.<br><br>You are solely responsible for your User Content and for ensuring it is accurate, lawful, and appropriate. We may, but are not obligated to, review, remove, or restrict access to User Content that we reasonably believe violates these Terms or applicable law.</p>
+                    </section>
+                    <section id="advice" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">11. No Professional Advice</h2>
+                      <p>Scan-a-Bin is provided for general organizational purposes only. The App does not provide legal, financial, medical, or other professional advice. Any information or suggestions you obtain through the App should not be regarded as a substitute for professional advice tailored to your specific situation.<br><br>You are responsible for obtaining appropriate professional advice before acting on any information related to legal rights, safety, compliance, or other specialized matters.</p>
+                    </section>
+                    <section id="warranties" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">12. Disclaimers of Warranties</h2>
+                      <p>To the fullest extent permitted by law, the App is provided on an "AS IS" and "AS AVAILABLE" basis, without warranties of any kind, whether express, implied, or statutory.<br><br>We specifically disclaim all implied warranties of merchantability, fitness for a particular purpose, non-infringement, and any warranties arising out of course of dealing or usage of trade.<br><br>We do not warrant that: (a) the App will be uninterrupted, secure, or error-free; (b) any defects or errors will be corrected; (c) the App will be compatible with your devices; or (d) the results or information obtained from the use of the App will be accurate, reliable, or meet your expectations.</p>
+                    </section>
+                    <section id="liability" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">13. Limitation of Liability</h2>
+                      <p>To the fullest extent permitted by law, in no event will Scan-a-Bin, its affiliates, licensors, or service providers be liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of data, loss of profits, loss of goodwill, or other intangible losses arising out of or related to:<br><br>&bull; Your access to or use of, or inability to access or use, the App;<br>&bull; Any conduct or content of other users or third parties; or<br>&bull; Any unauthorized access, use, or alteration of your data or User Content.<br><br>To the extent any liability cannot be excluded, our total aggregate liability arising out of or relating to the App or these Terms will not exceed the amount you paid (if any) for using the App in the twelve (12) months preceding the event giving rise to the claim, or one hundred U.S. dollars (USD $100), whichever is greater.</p>
+                    </section>
+                    <section id="indemnification" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">14. Indemnification</h2>
+                      <p>You agree to indemnify, defend, and hold harmless Scan-a-Bin and its affiliates, officers, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable attorneys' fees) arising out of or in any way connected with:<br><br>&bull; Your use of or access to the App;<br>&bull; Your violation of these Terms; or<br>&bull; Your User Content or any misuse of data within your household or account.<br><br>We reserve the right to assume the exclusive defense and control of any matter otherwise subject to indemnification by you, in which case you agree to cooperate with our defense of such claim.</p>
+                    </section>
+                    <section id="termination" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">15. Termination &amp; Suspension</h2>
+                      <p>We may suspend or terminate your access to Scan-a-Bin at any time, with or without notice, if we reasonably believe that you have violated these Terms, abused the service, or created risk or possible legal exposure for us or others.<br><br>You may stop using the App and delete your account at any time. Upon termination, your right to use the App will immediately cease. Certain provisions of these Terms, by their nature, will survive termination (including, without limitation, ownership, disclaimers, limitations of liability, and indemnification).</p>
+                    </section>
+                    <section id="changes" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">16. Changes to the App &amp; Terms</h2>
+                      <p>We may modify, update, or discontinue all or part of Scan-a-Bin at any time, with or without notice. We may also update these Terms from time to time. When we do, we will revise the "Last Updated" date at the top of the Terms.<br><br>Your continued use of the App following any changes to these Terms constitutes acceptance of the updated Terms. If you do not agree to the updated Terms, you must stop using the App.</p>
+                    </section>
+                    <section id="law" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">17. Governing Law</h2>
+                      <p>These Terms, and any dispute or claim arising out of or related to them or the App, will be governed by and construed in accordance with the laws of the jurisdiction where Scan-a-Bin is organized or primarily operates, without regard to its conflict of law principles.<br><br>You agree that any legal action or proceeding arising out of or relating to these Terms or the App will be brought exclusively in the courts of that jurisdiction, and you consent to the personal jurisdiction of such courts.</p>
+                    </section>
+                    <section id="severability" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">18. Severability &amp; Entire Agreement</h2>
+                      <p>If any provision of these Terms is found to be invalid, illegal, or unenforceable, that provision will be limited or eliminated to the minimum extent necessary, and the remaining provisions of these Terms will remain in full force and effect.<br><br>These Terms constitute the entire agreement between you and Scan-a-Bin regarding your use of Scan-a-Bin and supersede and replace any prior or contemporaneous understandings or agreements, whether written or oral, relating to the App.</p>
+                    </section>
+                    <section id="contact" class="mt-10">
+                      <h2 class="text-xl font-semibold mb-2">19. Contact Information</h2>
+                      <p>If you have questions about these Terms or about Scan-a-Bin, you can reach us using the in-app Support feature or by contacting us through the support channels provided within the App.<br><br>Please do not include highly sensitive information in support messages. We may ask you to verify ownership of your account before sharing any account-related details.</p>
+                    </section>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+        </main>
+        <footer class="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+              <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center space-x-2 mb-6">
+                  <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">A</div>
+                  <span class="text-xl font-bold text-white">Angel Gate Solutions</span>
+                </div>
+                <p class="text-slate-400 max-w-sm mb-8 leading-relaxed">
+                  Innovative software for real-world operations. We organize chaos in everyday life and complex workplace environments.
+                </p>
+                <div class="flex space-x-4">
+                  <a href="#" class="text-slate-400 hover:text-white transition-colors" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                    </svg>
+                  </a>
+                  <a href="#" class="text-slate-400 hover:text-white transition-colors" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                      <rect width="4" height="12" x="2" y="9"></rect>
+                      <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                  </a>
+                  <a href="#" class="text-slate-400 hover:text-white transition-colors" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                      <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-white font-semibold mb-6">Products</h3>
+                <ul class="space-y-4">
+                  <li><a class="hover:text-indigo-400 transition-colors" href="/ScanABin">Scan-A-Bin</a></li>
+                  <li><a class="hover:text-indigo-400 transition-colors" href="/DockPilot">DockPilot</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-white font-semibold mb-6">Company</h3>
+                <ul class="space-y-4">
+                  <li><a class="hover:text-indigo-400 transition-colors" href="/About">About Us</a></li>
+                  <li><a class="hover:text-indigo-400 transition-colors" href="/Support">Support</a></li>
+                  <li><a class="hover:text-indigo-400 transition-colors" href="/PrivacyPolicy">Privacy Policy</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="border-t border-slate-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
+              <p>© 2025 Angel Gate Solutions. All rights reserved.</p>
+              <div class="flex space-x-8 mt-4 md:mt-0">
+                <a href="/PrivacyPolicy" class="hover:text-slate-300 transition-colors">Privacy Policy</a>
+                <a href="/Terms" class="hover:text-slate-300 transition-colors">Terms &amp; Conditions</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <script>
+          function toggleMobileMenu() {
+            const menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("hidden");
+          }
+          function expandAll() {
+            document.getElementById("acceptance").scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        </script>
+      </body>
+      </html>
