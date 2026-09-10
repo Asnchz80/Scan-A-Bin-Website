@@ -9,6 +9,31 @@ jobs:
     runs-on: [self-hosted, linux, ARM64]
     
     steps:
+      - name: Wait for the Pi's single job slot
+        # This Pi hosts a separate runner per repo, and GitHub's `concurrency:`
+        # only serialises WITHIN one repo - it cannot see the other repos'
+        # runners. Nothing at the GitHub level can gate them, so the gate has
+        # to live here: an atomic mkdir that only one job on the box can win.
+        # Runner-side job hooks were tried first and never fired; a workflow
+        # step always runs, which is the whole point of putting it here.
+        run: |
+          SLOT=/mnt/t7/actions-runner/.jobslot
+          for i in $(seq 1 540); do
+            if mkdir "$SLOT" 2>/dev/null; then
+              echo "$GITHUB_REPOSITORY $GITHUB_RUN_ID $(date -Is)" > "$SLOT/owner"
+              echo "got the slot"
+              exit 0
+            fi
+            # Break a slot left behind by a job that died without releasing
+            # (hard power loss mid-run) rather than blocking every job after it.
+            if [ -d "$SLOT" ] && [ -n "$(find "$SLOT" -maxdepth 0 -mmin +90 2>/dev/null)" ]; then
+              echo "::warning::breaking a job slot older than 90 minutes"
+              rm -rf "$SLOT"
+            fi
+            sleep 5
+          done
+          echo "::error::timed out waiting for the Pi's job slot"
+          exit 1
       - uses: actions/checkout@v3
       
       - name: Deploy to Firebase Hosting
@@ -18,3 +43,8 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
           channelId: live
           projectId: scan-a-bin
+      - name: Release the Pi's job slot
+        # always() so a failed or cancelled job frees the slot for the next one
+        # instead of wedging every other repo behind it.
+        if: always()
+        run: rm -rf /mnt/t7/actions-runner/.jobslot
