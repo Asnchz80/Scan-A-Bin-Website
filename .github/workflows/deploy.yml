@@ -6,10 +6,14 @@ on:
 
 jobs:
   deploy:
-    runs-on: [self-hosted, linux, ARM64]
+    # Runs wherever the Pi's router sends it (the Pi, the Mac or GitHub's
+    # cloud) via CI_RUNS_ON; unset, it is the Pi exactly as before. The
+    # job-slot steps below only run on the Pi.
+    runs-on: ${{ fromJSON(vars.CI_RUNS_ON || '["self-hosted","linux","ARM64"]') }}
     
     steps:
       - name: Wait for the Pi's single job slot
+        if: runner.environment == 'self-hosted' && runner.os == 'Linux'
         # This Pi hosts a separate runner per repo, and GitHub's `concurrency:`
         # only serialises WITHIN one repo - it cannot see the other repos'
         # runners. Nothing at the GitHub level can gate them, so the gate has
@@ -34,7 +38,7 @@ jobs:
           done
           echo "::error::timed out waiting for the Pi's job slot"
           exit 1
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -46,5 +50,5 @@ jobs:
       - name: Release the Pi's job slot
         # always() so a failed or cancelled job frees the slot for the next one
         # instead of wedging every other repo behind it.
-        if: always()
+        if: always() && runner.environment == 'self-hosted' && runner.os == 'Linux'
         run: rm -rf /mnt/t7/actions-runner/.jobslot
